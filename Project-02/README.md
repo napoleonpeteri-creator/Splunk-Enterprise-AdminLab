@@ -518,6 +518,6 @@ The issue was resolved by properly creating the destination
 index on the Indexer and aligning the Heavy Forwarder's monitor
 configuration with that destination.
 
-============================================================
+==========================================================
 END OF INCIDENT DOCUMENTATION
 =====================================
