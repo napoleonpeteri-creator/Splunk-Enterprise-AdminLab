@@ -774,7 +774,7 @@ Source verification:
 ✓
 
 Sourcetype verification:
-✓
+
 
 Raw event verification:
 ✓
