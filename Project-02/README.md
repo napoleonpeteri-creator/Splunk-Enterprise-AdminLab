@@ -1,8 +1,8 @@
-=======================
+
 SPLUNK ADMINLAB
 TROUBLESHOOTING DOCUMENTATION
 HF → INDEXER CUSTOM INDEX INGESTION FAILURE
-============================================================
+===========================================================
 
 PROJECT:
 Splunk Enterprise Administration Lab
@@ -18,7 +18,7 @@ COMPONENTS:
 
 ============================================================
 1. PROBLEM STATEMENT
-============================================================
+
 
 The AdminLab Heavy Forwarder was successfully configured to
 monitor the HDFS dataset:
@@ -48,7 +48,7 @@ forwarding path might be broken.
 
 ============================================================
 2. INITIAL EVALUATION
-============================================================
+
 
 Rather than immediately performing extensive network and log
 diagnostics, the existing evidence was evaluated first.
@@ -79,7 +79,7 @@ The primary difference was the destination index.
 
 ============================================================
 3. INDEXER-SIDE VERIFICATION
-============================================================
+
 
 The Splunk Web interface on the Windows Splunk Enterprise
 instance was opened:
@@ -113,7 +113,7 @@ destination index.
 
 ============================================================
 4. SOLUTION
-============================================================
+
 
 The correct approach was to create the destination index on
 the Indexer rather than continuing to diagnose the forwarding
@@ -143,7 +143,7 @@ sent by the Heavy Forwarder.
 
 ============================================================
 5. HF CONFIGURATION CHANGE
-============================================================
+
 
 The Heavy Forwarder configuration was then changed so that
 the AdminLab HDFS monitor would send events to the newly
@@ -163,7 +163,7 @@ index = adminlab
 
 ============================================================
 6. BACKUP BEFORE MODIFICATION
-============================================================
+
 
 Before modifying the configuration, a backup was created:
 
@@ -182,7 +182,7 @@ original configuration could be restored.
 
 ============================================================
 7. CHANGE THE INDEX
-============================================================
+
 
 The destination index was changed with:
 
@@ -204,7 +204,7 @@ other configuration values would not be modified.
 
 ============================================================
 8. VERIFY EFFECTIVE SPLUNK CONFIGURATION
-============================================================
+
 
 Instead of assuming that the file modification was sufficient,
 Splunk's effective configuration was verified using btool:
@@ -224,7 +224,7 @@ configuration as intended.
 
 ============================================================
 9. RESTART THE HEAVY FORWARDER
-============================================================
+
 
 The Heavy Forwarder was restarted:
 
@@ -237,7 +237,7 @@ an operational state.
 
 ============================================================
 10. CONTROLLED TEST EVENT
-============================================================
+
 
 Because Splunk had already processed the existing 90 MB file,
 simply restarting Splunk would not necessarily cause the
@@ -260,7 +260,7 @@ without re-ingesting the entire 90 MB dataset.
 
 ============================================================
 11. INDEXER-SIDE VALIDATION
-============================================================
+
 
 The Splunk Web interface on the Windows Indexer was used to
 search:
@@ -285,7 +285,7 @@ through the complete ingestion pipeline.
 
 ============================================================
 12. FINAL DATA FLOW
-============================================================
+
 
 The final working architecture is:
 
@@ -312,7 +312,7 @@ Splunk Search
 
 ============================================================
 13. ROOT CAUSE
-============================================================
+
 
 The root cause was a destination-index configuration problem.
 
@@ -338,7 +338,7 @@ successfully indexed and searchable.
 
 ============================================================
 14. IMPORTANT LESSONS LEARNED
-============================================================
+
 
 LESSON 1: FOLLOW THE EVIDENCE
 
@@ -465,7 +465,7 @@ the possibility of introducing additional problems.
 
 ============================================================
 15. FINAL VALIDATION RESULT
-============================================================
+
 
 RESULT:
 
@@ -493,7 +493,7 @@ Searchability              = PASS
 
 ============================================================
 16. ADMINISTRATIVE TAKEAWAY
-============================================================
+
 
 This troubleshooting exercise demonstrated an important
 Splunk administration principle:
